@@ -41,6 +41,12 @@ jobs:
           targets: wasm32-unknown-unknown
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+      - name: Install node dependencies
+        run: pnpm install
       - name: Download Trunk
         uses: jetli/trunk-action@v0.4.0
       - name: Build Frontend

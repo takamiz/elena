@@ -17,9 +17,9 @@
 
 ### 準備
 - Rust (latest stable)
-- Node.js & npm
+- Node.js & pnpm
 - [Trunk](https://trunkrs.dev/) (`cargo install trunk`)
-- [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-update/) (`npm install -g wrangler`)
+- [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-update/) (`pnpm install -g wrangler`)
 
 ### サーバーの起動
 プロジェクトルートで以下のコマンドを実行します（別々のターミナルを推奨）：
