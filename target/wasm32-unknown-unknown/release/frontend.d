@@ -1,1 +1,0 @@
-/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/release/frontend.wasm: /home/takamiz/Repositories/elena/frontend/src/api.rs /home/takamiz/Repositories/elena/frontend/src/components/card.rs /home/takamiz/Repositories/elena/frontend/src/components/mod.rs /home/takamiz/Repositories/elena/frontend/src/lib.rs /home/takamiz/Repositories/elena/shared/src/lib.rs
