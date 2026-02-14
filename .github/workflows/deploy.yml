@@ -19,8 +19,6 @@ jobs:
         uses: Swatinem/rust-cache@v2
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-        with:
-          version: 10
       - name: Install node dependencies
         run: pnpm install
       - name: Install worker-build
@@ -46,8 +44,6 @@ jobs:
         uses: Swatinem/rust-cache@v2
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-        with:
-          version: 10
       - name: Install node dependencies
         run: pnpm install
       - name: Download Trunk
