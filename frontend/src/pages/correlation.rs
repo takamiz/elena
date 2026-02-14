@@ -82,13 +82,15 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
     }
 
     view! {
-        <table class="w-full border-collapse">
+        <table class="table-fixed w-full border-collapse">
             <thead>
                 <tr>
-                    <th class="p-2 border border-slate-700"></th>
+                    <th class="w-32 p-2 border border-slate-700 bg-slate-800/50"></th>
                     {names.iter().map(|name| view! {
-                        <th class="p-2 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-400 rotate-[-45deg] h-24 min-w-[80px]">
-                            {name}
+                        <th class="p-2 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-400 h-28 align-bottom pb-4">
+                            <div class="rotate-[-45deg] whitespace-nowrap w-12 mx-auto truncate" title={name.clone()}>
+                                {name}
+                            </div>
                         </th>
                     }).collect_view()}
                 </tr>
@@ -97,7 +99,7 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
                 {matrix.into_iter().enumerate().map(|(i, row)| {
                     view! {
                         <tr>
-                            <td class="p-2 border border-slate-700 text-xs font-bold text-slate-300 min-w-[120px]">
+                            <td class="p-2 border border-slate-700 text-xs font-bold text-slate-300 truncate bg-slate-800/50" title={&names[i]}>
                                 {&names[i]}
                             </td>
                             {row.into_iter().map(|val| {
