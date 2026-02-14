@@ -173,7 +173,7 @@ pub async fn scheduled(_event: ScheduledEvent, _env: Env, _ctx: worker::Schedule
 pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Response> {
     let router = Router::new();
 
-    router
+    let response = router
         .get("/", |_, _| Response::ok("Elena API Worker is running!"))
         .get_async("/api/market-data", |req, ctx| async move {
             let kv = ctx.kv("MARKET_DATA")?;
