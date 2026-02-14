@@ -37,7 +37,7 @@ jobs:
       - name: Download Trunk
         uses: jetli/trunk-action@v0.4.0
       - name: Build Frontend
-        run: trunk build --release --no-wasm-opt
+        run: trunk build --release
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
