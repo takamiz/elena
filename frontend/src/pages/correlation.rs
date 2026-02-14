@@ -84,36 +84,37 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
                 <thead class="sticky top-0 z-20">
                     <tr>
                         <th class="sticky left-0 z-30 w-32 p-2 border border-slate-700 bg-slate-800 font-bold text-xs shadow-[2px_0_5px_rgba(0,0,0,0.3)]"></th>
-                        {subset.iter().map(|h| {
-                            let (_, _, class, region) = h.kind.meta();
-                            let flag = match region {
-                                "US" => "🇺🇸",
-                                "JP" => "🇯🇵",
-                                "EU" => "🇪🇺",
-                                "UK" => "🇬🇧",
-                                "DE" => "🇩🇪",
-                                "Global" => "🌐",
-                                _ => "📍",
-                            };
-                            view! {
-                                <th class="p-2 border border-slate-700 bg-slate-800 h-40">
-                                    <div class="flex items-end justify-center h-full pb-2 text-slate-400">
-                                        <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider max-h-[140px] overflow-hidden text-ellipsis flex items-center gap-1" title={h.name.clone()}>
-                                            <span class="rotate-90">{class.icon()}</span>
-                                            <span class="rotate-90 mr-1">{flag}</span>
-                                            {h.name.clone()}
-                                        </span>
-                                    </div>
-                                </th>
-                            }
-                        }).collect_view()}
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-800">
-                    {matrix.into_iter().enumerate().map(|(i, row)| {
-                        let h = &subset[i];
-                        let (_, _, class, region) = h.kind.meta();
-                        let flag = match region {
+                                                                {subset.iter().map(|h| {
+                                                                    let (_, _, class, region) = h.kind.meta();
+                                                                    let flag = match region {
+                                                                        "US" => "🇺🇸",
+                                                                        "JP" => "🇯🇵",
+                                                                        "EU" => "🇪🇺",
+                                                                        "UK" => "🇬🇧",
+                                                                        "DE" => "🇩🇪",
+                                                                        "Global" => "🌐",
+                                                                        _ => "📍",
+                                                                    };
+                                                                    view! {
+                                                                        <th class="p-2 border border-slate-700 bg-slate-800 h-40">
+                                                                            <div class="flex items-end justify-center h-full pb-2 text-slate-400">
+                                                                                <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider max-h-[140px] overflow-hidden text-ellipsis flex items-center gap-1" title={h.name.clone()}>
+                                                                                    <span class="rotate-90">{class.icon()}</span>
+                                                                                    <span class="rotate-90 mr-1">{flag}</span>
+                                                                                    {h.name.clone()}
+                                                                                </span>
+                                                                            </div>
+                                                                        </th>
+                                                                    }
+                                                                }).collect_view()}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="divide-y divide-slate-800">
+                                                            {matrix.into_iter().enumerate().map(|(i, row)| {
+                                                                let h = &subset[i];
+                                                                let (_, _, _class, region) = h.kind.meta();
+                                                                let flag = match region {
+                                            
                             "US" => "🇺🇸",
                             "JP" => "🇯🇵",
                             "EU" => "🇪🇺",

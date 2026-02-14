@@ -165,9 +165,16 @@ async fn fetch_history(kind: AssetKind) -> Option<AssetHistory> {
     })
 }
 
+use wasm_bindgen::prelude::*;
+
 #[event(scheduled)]
 pub async fn scheduled(_event: ScheduledEvent, _env: Env, _ctx: worker::ScheduleContext) {
     // 将来的にここに定期的なキャッシュ更新ロジックを実装できます
+}
+
+#[wasm_bindgen]
+pub async fn queue(_batch: JsValue, _env: JsValue, _ctx: JsValue) {
+    // 警告回避のための空のエクスポートです
 }
 
 #[event(fetch)]
