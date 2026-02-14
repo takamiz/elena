@@ -39,9 +39,7 @@ pub fn CorrelationMatrix() -> impl IntoView {
                                 }
 
                                 view! {
-                                    <div class="overflow-x-auto bg-slate-800/30 p-6 rounded-2xl border border-slate-700 shadow-xl">
-                                        <MatrixTable histories=valid_histories />
-                                    </div>
+                                    <MatrixTable histories=valid_histories />
                                 }.into_view()
                             },
                             None => view! { <p class="text-rose-400 text-center">"履歴データの読み込みに失敗しました。"</p> }.into_view()
@@ -81,11 +79,39 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
     }
 
     view! {
-        <table class="table-fixed w-full border-collapse">
-            <thead>
-                <tr>
-                    <th class="w-32 p-2 border border-slate-700 bg-slate-800/50"></th>
-                    {subset.iter().map(|h| {
+        <div class="relative overflow-x-auto border border-slate-700 rounded-xl shadow-2xl bg-slate-900/50">
+            <table class="table-fixed min-w-[800px] w-full border-collapse">
+                <thead class="sticky top-0 z-20">
+                    <tr>
+                        <th class="sticky left-0 z-30 w-32 p-2 border border-slate-700 bg-slate-800 font-bold text-xs shadow-[2px_0_5px_rgba(0,0,0,0.3)]"></th>
+                        {subset.iter().map(|h| {
+                            let (_, _, class, region) = h.kind.meta();
+                            let flag = match region {
+                                "US" => "🇺🇸",
+                                "JP" => "🇯🇵",
+                                "EU" => "🇪🇺",
+                                "UK" => "🇬🇧",
+                                "DE" => "🇩🇪",
+                                "Global" => "🌐",
+                                _ => "📍",
+                            };
+                            view! {
+                                <th class="p-2 border border-slate-700 bg-slate-800 h-40">
+                                    <div class="flex items-end justify-center h-full pb-2 text-slate-400">
+                                        <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider max-h-[140px] overflow-hidden text-ellipsis flex items-center gap-1" title={h.name.clone()}>
+                                            <span class="rotate-90">{class.icon()}</span>
+                                            <span class="rotate-90 mr-1">{flag}</span>
+                                            {h.name.clone()}
+                                        </span>
+                                    </div>
+                                </th>
+                            }
+                        }).collect_view()}
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800">
+                    {matrix.into_iter().enumerate().map(|(i, row)| {
+                        let h = &subset[i];
                         let (_, _, class, region) = h.kind.meta();
                         let flag = match region {
                             "US" => "🇺🇸",
@@ -97,53 +123,27 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
                             _ => "📍",
                         };
                         view! {
-                            <th class="p-2 border border-slate-700 bg-slate-800/50 h-40">
-                                <div class="flex items-end justify-center h-full pb-2 text-slate-400">
-                                    <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider max-h-[140px] overflow-hidden text-ellipsis flex items-center gap-1" title={h.name.clone()}>
-                                        <span class="rotate-90">{class.icon()}</span>
-                                        <span class="rotate-90 mr-1">{flag}</span>
-                                        {h.name.clone()}
-                                    </span>
-                                </div>
-                            </th>
+                            <tr class="hover:bg-slate-700/30 transition-colors">
+                                <td class="sticky left-0 z-10 p-2 border border-slate-700 text-[10px] font-bold text-slate-300 truncate bg-slate-800 shadow-[2px_0_5px_rgba(0,0,0,0.3)]" title={h.name.clone()}>
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-4 shrink-0 text-center">{flag}</span>
+                                        <span class="truncate">{h.name.clone()}</span>
+                                    </div>
+                                </td>
+                                {row.into_iter().map(|val| {
+                                    let color = get_correlation_color(val);
+                                    view! {
+                                        <td class={format!("p-2 border border-slate-700 text-[10px] font-mono text-center {}", color)}>
+                                            {format!("{:.2}", val)}
+                                        </td>
+                                    }
+                                }).collect_view()}
+                            </tr>
                         }
                     }).collect_view()}
-                </tr>
-            </thead>
-            <tbody>
-                {matrix.into_iter().enumerate().map(|(i, row)| {
-                    let h = &subset[i];
-                    let (_, _, class, region) = h.kind.meta();
-                    let flag = match region {
-                        "US" => "🇺🇸",
-                        "JP" => "🇯🇵",
-                        "EU" => "🇪🇺",
-                        "UK" => "🇬🇧",
-                        "DE" => "🇩🇪",
-                        "Global" => "🌐",
-                        _ => "📍",
-                    };
-                    view! {
-                        <tr>
-                            <td class="p-2 border border-slate-700 text-[10px] font-bold text-slate-300 truncate bg-slate-800/50" title={h.name.clone()}>
-                                <div class="flex items-center gap-1">
-                                    <span class="w-4 shrink-0 text-center">{flag}</span>
-                                    <span class="truncate">{h.name.clone()}</span>
-                                </div>
-                            </td>
-                            {row.into_iter().map(|val| {
-                                let color = get_correlation_color(val);
-                                view! {
-                                    <td class={format!("p-2 border border-slate-700 text-[10px] font-mono text-center {}", color)}>
-                                        {format!("{:.2}", val)}
-                                    </td>
-                                }
-                            }).collect_view()}
-                        </tr>
-                    }
-                }).collect_view()}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     }
 }
 
