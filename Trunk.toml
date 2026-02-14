@@ -1,6 +1,9 @@
 [build]
 target = "frontend/index.html"
 
+[tools]
+wasm_opt = "off"
+
 [watch]
 ignore = ["./worker"]
 
