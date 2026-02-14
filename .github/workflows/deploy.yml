@@ -25,6 +25,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: worker
           command: deploy
+          wranglerVersion: '4.65.0'
 
   deploy-frontend:
     runs-on: ubuntu-latest
