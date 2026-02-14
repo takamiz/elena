@@ -1,0 +1,14 @@
+name = "elena-worker"
+main = "build/worker/shim.mjs"
+compatibility_date = "2024-02-14"
+
+[build]
+command = "cargo install -q worker-build --version 0.1.4 && worker-build --release" 
+
+[vars]
+ENVIRONMENT = "development"
+
+[[kv_namespaces]]
+binding = "MARKET_DATA"
+id = "166d0c7cd07943c981e978789fafb236"
+preview_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"

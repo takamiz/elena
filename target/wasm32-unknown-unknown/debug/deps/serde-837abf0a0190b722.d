@@ -1,0 +1,14 @@
+/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/deps/serde-837abf0a0190b722.d: /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/build/serde-9f84a6c35a5a4ac2/out/private.rs
+
+/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/deps/libserde-837abf0a0190b722.rlib: /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/build/serde-9f84a6c35a5a4ac2/out/private.rs
+
+/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/deps/libserde-837abf0a0190b722.rmeta: /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/build/serde-9f84a6c35a5a4ac2/out/private.rs
+
+/home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/takamiz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/build/serde-9f84a6c35a5a4ac2/out/private.rs:
+
+# env-dep:OUT_DIR=/home/takamiz/Repositories/elena/target/wasm32-unknown-unknown/debug/build/serde-9f84a6c35a5a4ac2/out
