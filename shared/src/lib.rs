@@ -4,11 +4,27 @@ use serde::{Deserialize, Serialize};
 pub enum AssetClass {
     Stocks,
     Bonds,
+    Cash,
     RealEstate,
     Commodities,
     Currencies,
     Crypto,
     Other,
+}
+
+impl AssetClass {
+    pub fn icon(&self) -> &'static str {
+        match self {
+            AssetClass::Stocks => "📈",
+            AssetClass::Bonds => "💰",
+            AssetClass::Cash => "💵",
+            AssetClass::RealEstate => "🏠",
+            AssetClass::Commodities => "📦",
+            AssetClass::Currencies => "💱",
+            AssetClass::Crypto => "₿",
+            AssetClass::Other => "⚙️",
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Copy)]
@@ -112,9 +128,9 @@ impl AssetKind {
             AssetKind::DAX => ("^GDAXI", "DAX", AssetClass::Stocks, "DE"),
             AssetKind::MsciEm => ("EEM", "MSCI Emerging Markets (ETF)", AssetClass::Stocks, "Global"),
             AssetKind::MsciAcwi => ("ACWI", "MSCI ACWI (ETF)", AssetClass::Stocks, "Global"),
-            // Bonds
+            // Bonds & Cash
             AssetKind::US10Y => ("^TNX", "US 10Y Yield", AssetClass::Bonds, "US"),
-            AssetKind::US2Y => ("^IRX", "US 13W Yield (Proxy)", AssetClass::Bonds, "US"),
+            AssetKind::US2Y => ("^IRX", "US 13W Yield (Proxy)", AssetClass::Cash, "US"),
             AssetKind::JP10Y => ("^GJGB10", "JP 10Y Yield", AssetClass::Bonds, "JP"),
             AssetKind::JP2Y => ("^GJGB2", "JP 2Y Yield", AssetClass::Bonds, "JP"),
             // REIT
@@ -151,6 +167,20 @@ pub struct AssetIndex {
     pub change_price: f64, // Absolute change
     pub is_market_open: bool,
     pub last_updated: String, // ISO 8601
+}
+
+impl AssetIndex {
+    pub fn region_emoji(&self) -> &'static str {
+        match self.region.as_str() {
+            "US" => "🇺🇸",
+            "JP" => "🇯🇵",
+            "EU" => "🇪🇺",
+            "UK" => "🇬🇧",
+            "DE" => "🇩🇪",
+            "Global" => "🌐",
+            _ => "📍",
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

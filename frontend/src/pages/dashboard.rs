@@ -55,6 +55,7 @@ pub fn Dashboard() -> impl IntoView {
                                     let classes = [
                                         shared::AssetClass::Stocks,
                                         shared::AssetClass::Bonds,
+                                        shared::AssetClass::Cash,
                                         shared::AssetClass::Currencies,
                                         shared::AssetClass::Commodities,
                                         shared::AssetClass::RealEstate,
@@ -77,6 +78,7 @@ pub fn Dashboard() -> impl IntoView {
                                                 let class_name = match class {
                                                     shared::AssetClass::Stocks => "株式",
                                                     shared::AssetClass::Bonds => "債券・金利",
+                                                    shared::AssetClass::Cash => "現金・短期資金",
                                                     shared::AssetClass::Currencies => "為替",
                                                     shared::AssetClass::Commodities => "コモディティ",
                                                     shared::AssetClass::RealEstate => "不動産 (REIT)",
@@ -86,8 +88,8 @@ pub fn Dashboard() -> impl IntoView {
 
                                                 view! {
                                                     <section>
-                                                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                                            <span class="w-1 h-6 bg-emerald-500 rounded-full"></span>
+                                                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-200">
+                                                            <span class="mr-1">{class.icon()}</span>
                                                             {class_name}
                                                         </h2>
                                                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

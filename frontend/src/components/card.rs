@@ -32,8 +32,14 @@ pub fn AssetCard(index: AssetIndex) -> impl IntoView {
                     <div class="flex items-center gap-2">
                         {market_status}
                         <div>
-                            <h2 class="text-sm font-bold text-slate-100 group-hover:text-white transition-colors line-clamp-1">{index.name}</h2>
-                            <p class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">{index.region}</p>
+                            <h2 class="text-sm font-bold text-slate-100 group-hover:text-white transition-colors line-clamp-1">
+                                <span class="mr-1">{index.class.icon()}</span>
+                                {index.name}
+                            </h2>
+                            <p class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold flex items-center gap-1">
+                                <span>{index.region_emoji()}</span>
+                                {index.region}
+                            </p>
                         </div>
                     </div>
                     <span class={format!("text-xs font-mono font-bold px-1.5 py-0.5 rounded bg-slate-900/40 {}", text_color)}>
