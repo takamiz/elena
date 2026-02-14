@@ -250,5 +250,11 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
             Response::error("Not Found or Failed", 404)
         })
         .run(req, env)
-        .await
+        .await?;
+
+    let cors = Cors::default()
+        .with_origins(vec!["*"]) // 本番環境では特定のドメインに絞るのが理想的です
+        .with_methods(vec![Method::Get, Method::Post, Method::Options]);
+
+    response.with_cors(&cors)
 }
