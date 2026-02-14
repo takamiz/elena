@@ -37,6 +37,7 @@ pub fn AssetDetail() -> impl IntoView {
                                     let c_name = match c {
                                         shared::AssetClass::Stocks => "株式",
                                         shared::AssetClass::Bonds => "債券",
+                                        shared::AssetClass::Cash => "現金・短期資金",
                                         shared::AssetClass::Currencies => "為替",
                                         shared::AssetClass::Commodities => "コモディティ",
                                         shared::AssetClass::RealEstate => "不動産",

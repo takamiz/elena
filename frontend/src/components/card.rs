@@ -34,11 +34,11 @@ pub fn AssetCard(index: AssetIndex) -> impl IntoView {
                         <div>
                             <h2 class="text-sm font-bold text-slate-100 group-hover:text-white transition-colors line-clamp-1">
                                 <span class="mr-1">{index.class.icon()}</span>
-                                {index.name}
+                                {index.name.clone()}
                             </h2>
                             <p class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold flex items-center gap-1">
                                 <span>{index.region_emoji()}</span>
-                                {index.region}
+                                {index.region.clone()}
                             </p>
                         </div>
                     </div>
