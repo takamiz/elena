@@ -1,5 +1,5 @@
 use worker::*;
-use futures::future::join_all;
+use futures_util::future::join_all;
 // Actually worker crate implies we might need explicit dependency in Cargo.toml if 'futures' is not re-exported.
 // worker 0.0.18+ re-exports some, but better to check. 
 // Let's assume we need to add 'futures' to Cargo.toml.
