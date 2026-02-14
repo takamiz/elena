@@ -2,6 +2,9 @@ use gloo_net::http::Request;
 use shared::MarketData;
 // use leptos::*;
 
+#[cfg(debug_assertions)]
+const API_BASE: &str = "http://127.0.0.1:8787";
+#[cfg(not(debug_assertions))]
 const API_BASE: &str = "https://elena-worker.takamiz.workers.dev";
 
 pub async fn fetch_market_data(force: bool) -> Option<MarketData> {
