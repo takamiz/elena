@@ -2,11 +2,15 @@ use gloo_net::http::Request;
 use shared::MarketData;
 // use leptos::*;
 
+const API_BASE: &str = "https://elena-worker.takamiz.workers.dev";
+
 pub async fn fetch_market_data(force: bool) -> Option<MarketData> {
-    // In local dev, we might need to proxy or change URL. 
-    // For now assuming relative path /api/market-data works via proxy or production.
-    let url = if force { "/api/market-data?refresh=true" } else { "/api/market-data" };
-    let resp = Request::get(url).send().await.ok()?;
+    let url = if force { 
+        format!("{}/api/market-data?refresh=true", API_BASE)
+    } else { 
+        format!("{}/api/market-data", API_BASE)
+    };
+    let resp = Request::get(&url).send().await.ok()?;
     
     if !resp.ok() {
         return None;
@@ -16,7 +20,7 @@ pub async fn fetch_market_data(force: bool) -> Option<MarketData> {
 }
 
 pub async fn fetch_asset_history(id: String) -> Option<shared::AssetHistory> {
-    let resp = Request::get(&format!("/api/history/{}", id)).send().await.ok()?;
+    let resp = Request::get(&format!("{}/api/history/{}", API_BASE, id)).send().await.ok()?;
     if !resp.ok() {
         return None;
     }
@@ -24,7 +28,7 @@ pub async fn fetch_asset_history(id: String) -> Option<shared::AssetHistory> {
 }
 
 pub async fn fetch_all_history() -> Option<Vec<shared::AssetHistory>> {
-    let resp = Request::get("/api/history-all").send().await.ok()?;
+    let resp = Request::get(&format!("{}/api/history-all", API_BASE)).send().await.ok()?;
     if !resp.ok() {
         return None;
     }
