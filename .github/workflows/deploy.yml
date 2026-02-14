@@ -24,7 +24,7 @@ jobs:
       - name: Install worker-build
         run: cargo install worker-build --version 0.1.4
       - name: Deploy to Cloudflare Workers
-        run: cd worker && pnpm exec wrangler deploy
+        run: pnpm exec wrangler deploy --config worker/wrangler.toml
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
