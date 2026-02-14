@@ -87,8 +87,8 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
                 <tr>
                     <th class="w-32 p-2 border border-slate-700 bg-slate-800/50"></th>
                     {names.iter().map(|name| view! {
-                        <th class="p-2 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-400 h-28 align-bottom pb-4">
-                            <div class="rotate-[-45deg] whitespace-nowrap w-12 mx-auto truncate" title={name.clone()}>
+                        <th class="p-2 border border-slate-700 text-[10px] uppercase tracking-wider text-slate-400 h-48 align-bottom pb-8">
+                            <div class="-rotate-90 whitespace-nowrap w-6 mx-auto" title={name.clone()}>
                                 {name}
                             </div>
                         </th>
