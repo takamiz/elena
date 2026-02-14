@@ -58,7 +58,6 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
     // We'll use a subset if too many, but let's try all for now
     // Actually limit to top 12 to avoid huge table
     let subset = histories.into_iter().take(12).collect::<Vec<_>>();
-    let names: Vec<String> = subset.iter().map(|h| h.name.clone()).collect();
     
     // Calculate returns for each
     let returns: Vec<Vec<f64>> = subset.iter().map(|h| {
@@ -86,23 +85,51 @@ fn MatrixTable(histories: Vec<AssetHistory>) -> impl IntoView {
             <thead>
                 <tr>
                     <th class="w-32 p-2 border border-slate-700 bg-slate-800/50"></th>
-                    {names.iter().map(|name| view! {
-                        <th class="p-2 border border-slate-700 bg-slate-800/50 h-40">
-                            <div class="flex items-end justify-center h-full pb-2">
-                                <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider text-slate-400 max-h-[140px] overflow-hidden text-ellipsis" title={name.clone()}>
-                                    {name}
-                                </span>
-                            </div>
-                        </th>
+                    {subset.iter().map(|h| {
+                        let (_, _, class, region) = h.kind.meta();
+                        let flag = match region {
+                            "US" => "🇺🇸",
+                            "JP" => "🇯🇵",
+                            "EU" => "🇪🇺",
+                            "UK" => "🇬🇧",
+                            "DE" => "🇩🇪",
+                            "Global" => "🌐",
+                            _ => "📍",
+                        };
+                        view! {
+                            <th class="p-2 border border-slate-700 bg-slate-800/50 h-40">
+                                <div class="flex items-end justify-center h-full pb-2 text-slate-400">
+                                    <span class="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap text-[10px] uppercase tracking-wider max-h-[140px] overflow-hidden text-ellipsis flex items-center gap-1" title={h.name.clone()}>
+                                        <span class="rotate-90">{class.icon()}</span>
+                                        <span class="rotate-90 mr-1">{flag}</span>
+                                        {h.name.clone()}
+                                    </span>
+                                </div>
+                            </th>
+                        }
                     }).collect_view()}
                 </tr>
             </thead>
             <tbody>
                 {matrix.into_iter().enumerate().map(|(i, row)| {
+                    let h = &subset[i];
+                    let (_, _, class, region) = h.kind.meta();
+                    let flag = match region {
+                        "US" => "🇺🇸",
+                        "JP" => "🇯🇵",
+                        "EU" => "🇪🇺",
+                        "UK" => "🇬🇧",
+                        "DE" => "🇩🇪",
+                        "Global" => "🌐",
+                        _ => "📍",
+                    };
                     view! {
                         <tr>
-                            <td class="p-2 border border-slate-700 text-xs font-bold text-slate-300 truncate bg-slate-800/50" title={&names[i]}>
-                                {&names[i]}
+                            <td class="p-2 border border-slate-700 text-[10px] font-bold text-slate-300 truncate bg-slate-800/50" title={h.name.clone()}>
+                                <div class="flex items-center gap-1">
+                                    <span class="w-4 shrink-0 text-center">{flag}</span>
+                                    <span class="truncate">{h.name.clone()}</span>
+                                </div>
                             </td>
                             {row.into_iter().map(|val| {
                                 let color = get_correlation_color(val);

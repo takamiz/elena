@@ -197,6 +197,7 @@ pub struct HistoryItem {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct AssetHistory {
+    pub kind: AssetKind,
     pub symbol: String,
     pub name: String,
     pub data: Vec<HistoryItem>,

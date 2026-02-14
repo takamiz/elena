@@ -158,6 +158,7 @@ async fn fetch_history(kind: AssetKind) -> Option<AssetHistory> {
     }
 
     Some(AssetHistory {
+        kind,
         symbol: symbol.to_string(),
         name: name.to_string(),
         data,
